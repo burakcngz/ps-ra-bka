@@ -1,0 +1,25 @@
+<suite name = "PetStore Suite">
+    <test name = "Test">
+        <classes>
+            <class name = "petTests.PetTests">
+                <methods>
+                    <include name="addNewPet"/>
+                    <include name="getPetById"/>
+                    <include name="updatePetWithFormData"/>
+                    <include name="uploadPetImage"/>
+                    <include name="updatePet"/>
+                    <include name="findPetByStatus"/>
+                    <include name ="deletePet"/>
+                </methods>
+            </class>
+            <class name="storeTests.StoreTests">
+                <methods>
+                    <include name ="placeOrder"/>
+                    <include name ="getOrderById"/>
+                    <include name ="getInventory"/>
+                    <include name ="deleteOrderById"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
