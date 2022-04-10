@@ -1,22 +1,25 @@
 package petTests;
 
 import base.BaseTest;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 import utils.DataProviders;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import static endpoints.Endpoints.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static utils.Assertions.*;
-import static utils.RequestBase.requestSpecification;
 
 
 public class PetTests extends BaseTest {
-
+public RequestSpecification requestSpecification;
     //region FIND PET BY ID
-    @Test
+    @Test()
     public void getPetById(){
+
         response = requestSpecification.get(BASE_URL+GET_PET+"9223372000001097001");
         assertNumericValueOfKey(response,"id",9223372000001097001L);
         printResponse(response);
@@ -72,7 +75,13 @@ public class PetTests extends BaseTest {
     public void updatePet(String val){
         requestSpecification = rb.createPutRequest(val);
         response = requestSpecification.put(BASE_URL+PET);
-        assertValueOfKey(response,"name","Pet New Added Updated");
+        Map<String,String> map;
+        map = new HashMap<>();
+        map.put("name","Pet New Added Updated");
+        map.put("category.name","Dog");
+        map.put("tags[0].name","Tag No 1 Updated");
+        assertMultipleValueOfKey(response,map);
+        //assertValueOfKey(response,"name","Pet New Added Updated");
         printResponse(response);
     }
     //endregion

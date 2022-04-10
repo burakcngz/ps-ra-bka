@@ -1,5 +1,6 @@
 package utils;
 
+import models.OrderModel;
 import models.PetModel;
 import models.subModels.CategoryModel;
 import models.subModels.TagModel;
@@ -26,6 +27,10 @@ public class ObjectCreator {
         TagModel tag = new TagModel(tagId+1,tagName +" Updated");
         PetModel pet = new PetModel(petId,category,petName+" Updated",photoUrls,new TagModel[]{tag},status);
         return pet;
+    }
+    public static OrderModel createOrder(){
+        OrderModel order = new OrderModel(8,9223372000001097001L,5,"1992-10-19T07:30:21.197Z","placed",true);
+        return order;
     }
 
 }

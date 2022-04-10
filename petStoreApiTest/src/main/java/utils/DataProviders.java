@@ -20,4 +20,12 @@ public class DataProviders {
                 {petPayload}
         };
     }
+    @DataProvider(name="orderProvider")
+    public static Object[][] orderDataProvide(){
+        Gson gson = new Gson();
+        String orderPayload = gson.toJson(ObjectCreator.createOrder());
+        return new Object[][]{
+                {orderPayload}
+        };
+    }
 }
