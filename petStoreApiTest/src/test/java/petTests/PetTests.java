@@ -80,8 +80,9 @@ public class PetTests extends BaseTest {
     public void updatePet(String val){
         requestSpecification = rb.createPutRequest(val);
         response = requestSpecification.put(BASE_URL+PET);
-        Map<String,String> map;
+        Map<String,Object> map;
         map = new HashMap<>();
+        map.put("id",9223372000001097001L);
         map.put("name","Pet New Added Updated");
         map.put("category.name","Dog");
         map.put("tags[0].name","Tag No 1 Updated");

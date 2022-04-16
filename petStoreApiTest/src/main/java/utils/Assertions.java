@@ -23,9 +23,9 @@ public class Assertions {
     public static ValidatableResponse assertValueOfKey(Response res, String key, String expectedValue){
         return res.then().assertThat().body(key,equalTo(expectedValue));
     }
-    public static ValidatableResponse assertMultipleValueOfKey(Response res, Map<String,String> pairs){
+    public static ValidatableResponse assertMultipleValueOfKey(Response res, Map<String,?> pairs){
 
-        for (Map.Entry<String, String> entry : pairs.entrySet()) {
+        for (Map.Entry<String, ?> entry : pairs.entrySet()) {
             res.then().assertThat().body(entry.getKey(), equalTo(entry.getValue()));
         }
         return res.then();
