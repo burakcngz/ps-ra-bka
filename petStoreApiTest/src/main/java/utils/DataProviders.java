@@ -28,4 +28,20 @@ public class DataProviders {
                 {orderPayload}
         };
     }
+    @DataProvider(name="userProvider")
+    public static Object[][] userDataProvide(){
+        Gson gson = new Gson();
+        String userPayload = gson.toJson(ObjectCreator.createUser());
+        return new Object[][]{
+                {userPayload}
+        };
+    }
+    @DataProvider(name="userListProvider")
+    public static Object[][] userListDataProvide(){
+        Gson gson = new Gson();
+        String userListPayload = gson.toJson(ObjectCreator.createUserFromList());
+        return new Object[][]{
+                {userListPayload}
+        };
+    }
 }

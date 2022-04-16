@@ -10,4 +10,8 @@ public class Endpoints {
     public static String PET_UPLOAD_IMAGE="/uploadImage";
     public static String STORE_INVENTORY = "store/inventory";
     public static String STORE_ORDER = "store/order/";
+    public static String USER = "user";
+    public static String USER_LOGIN = "/login";
+    public static String USER_LOGOUT = "/logout";
+    public static String USER_CREATE_WITH_LIST = "/createWithList";
 }

@@ -15,13 +15,14 @@ import static utils.Assertions.*;
 
 
 public class PetTests extends BaseTest {
-public RequestSpecification requestSpecification;
+    public RequestSpecification requestSpecification;
     //region FIND PET BY ID
     @Test()
     public void getPetById(){
 
         response = requestSpecification.get(BASE_URL+GET_PET+"9223372000001097001");
         assertNumericValueOfKey(response,"id",9223372000001097001L);
+        validateResponseTime(response,5000);
         printResponse(response);
 
     }
@@ -34,6 +35,7 @@ public RequestSpecification requestSpecification;
         requestSpecification = rb.createPostRequestWithFormData();
         response = requestSpecification.param("name","Partial Updated").param("status","available").post(BASE_URL+UPDATE_PET+"9223372000001097001");
         assertStatusCode(response);
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     //endregion
@@ -45,17 +47,19 @@ public RequestSpecification requestSpecification;
         requestSpecification = rb.createDeleteRequest();
         response = requestSpecification.delete(BASE_URL+DELETE_PET+"9223372000001097001");
         assertStatusCode(response);
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     //endregion
 
     //region UPLOADS AN IMAGE FOR A PET
-   //TODO JSON SCHEMA VALIDATOR EKLENECEK
+    //TODO JSON SCHEMA VALIDATOR EKLENECEK
     @Test
     public void uploadPetImage(){
         requestSpecification = rb.createPostRequestWithMultiPartFormData();
         response = requestSpecification.multiPart("additionalMetadata","Meta Data Test Value").multiPart("file",new File("atImage.jpg")).post(BASE_URL+GET_PET+"9223372000001097001"+PET_UPLOAD_IMAGE);
         assertStatusCode(response);
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     //endregion
@@ -66,6 +70,7 @@ public RequestSpecification requestSpecification;
         requestSpecification = rb.createPostRequest(val);
         response = requestSpecification.post(BASE_URL+PET);
         assertValueOfKey(response,"name","Pet New Added");
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     //endregion
@@ -81,6 +86,7 @@ public RequestSpecification requestSpecification;
         map.put("category.name","Dog");
         map.put("tags[0].name","Tag No 1 Updated");
         assertMultipleValueOfKey(response,map);
+        validateResponseTime(response,5000);
         //assertValueOfKey(response,"name","Pet New Added Updated");
         printResponse(response);
     }
@@ -91,6 +97,7 @@ public RequestSpecification requestSpecification;
     public void findPetByStatus(){
         response = requestSpecification.queryParam("status","available").get(BASE_URL+PET_FIND_BY_STATUS);
         assertStatusCode(response);
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     //endregion

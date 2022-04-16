@@ -10,7 +10,7 @@ import static utils.Assertions.*;
 
 
 public class StoreTests extends BaseTest {
-public RequestSpecification requestSpecification;
+    public RequestSpecification requestSpecification;
     @Test(dataProvider = "orderProvider",dataProviderClass = DataProviders.class)
     public void placeOrder(String val){
         requestSpecification = rb.createPostRequest(val);
@@ -18,6 +18,7 @@ public RequestSpecification requestSpecification;
         assertStatusCode(response);
         assertNotNullValue(response,"id");
         assertValueOfKey(response,"status","placed");
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     @Test
@@ -25,6 +26,7 @@ public RequestSpecification requestSpecification;
         response = requestSpecification.get(BASE_URL+STORE_INVENTORY);
         assertStatusCode(response);
         assertNotNullValue(response,"sold");
+        validateResponseTime(response,5000);
         printResponse(response);
     }
     @Test
@@ -33,6 +35,7 @@ public RequestSpecification requestSpecification;
         assertStatusCode(response);
         assertNotNullValue(response,"id");
         assertValueOfKey(response,"status","placed");
+        validateResponseTime(response,5000);
         printResponse(response);
     }
 
@@ -42,6 +45,7 @@ public RequestSpecification requestSpecification;
         assertStatusCode(response);
         assertNotNullValue(response,"type");
         assertValueOfKey(response,"message","8");
+        validateResponseTime(response,5000);
         printResponse(response);
     }
 }

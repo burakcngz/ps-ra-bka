@@ -20,6 +20,15 @@
                     <include name ="deleteOrderById"/>
                 </methods>
             </class>
+            <class name="userTests.UserTests">
+                <methods>
+                    <include name ="postCreateUser"/>
+                    <include name ="postCreateUserFromList"/>
+                    <include name ="getUserByUserName"/>
+                    <include name ="getUserLogin"/>
+                    <include name ="getUserLogout"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
