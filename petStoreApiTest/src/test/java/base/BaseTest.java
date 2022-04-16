@@ -11,7 +11,7 @@ public class BaseTest {
     public Response response;
     @BeforeSuite
     public void setUp(){
-        rb.createRequest();
+        System.out.println("Test Başladı");
     }
 
     // TODO : Raporlama eklendiğinde bu alana konulacak.
