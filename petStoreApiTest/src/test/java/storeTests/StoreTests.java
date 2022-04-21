@@ -10,11 +10,10 @@ import static utils.Assertions.*;
 
 
 public class StoreTests extends BaseTest {
-    public RequestSpecification requestSpecification;
     @Test(dataProvider = "orderProvider",dataProviderClass = DataProviders.class)
     public void placeOrder(String val){
-        requestSpecification = rb.createPostRequest(val);
-        response = requestSpecification.post(BASE_URL+STORE_ORDER);
+        response = rb.createPostRequest(val)
+                .post(BASE_URL+STORE_ORDER);
         assertStatusCode(response);
         assertNotNullValue(response,"id");
         assertValueOfKey(response,"status","placed");
@@ -23,7 +22,8 @@ public class StoreTests extends BaseTest {
     }
     @Test
     public void getInventory(){
-        response = requestSpecification.get(BASE_URL+STORE_INVENTORY);
+        response = rb.createRequest()
+                .get(BASE_URL+STORE_INVENTORY);
         assertStatusCode(response);
         assertNotNullValue(response,"sold");
         validateResponseTime(response,5000);
@@ -31,7 +31,8 @@ public class StoreTests extends BaseTest {
     }
     @Test
     public void getOrderById(){
-        response = requestSpecification.get(BASE_URL+STORE_ORDER+"8");
+        response = rb.createRequest()
+                .get(BASE_URL+STORE_ORDER+"8");
         assertStatusCode(response);
         assertNotNullValue(response,"id");
         assertValueOfKey(response,"status","placed");
@@ -41,7 +42,8 @@ public class StoreTests extends BaseTest {
 
     @Test
     public void deleteOrderById(){
-        response = requestSpecification.delete(BASE_URL+STORE_ORDER+"8");
+        response = rb.createDeleteRequest()
+                .delete(BASE_URL+STORE_ORDER+"8");
         assertStatusCode(response);
         assertNotNullValue(response,"type");
         assertValueOfKey(response,"message","8");

@@ -15,13 +15,12 @@ import static utils.Assertions.*;
 
 
 public class PetTests extends BaseTest {
-    public RequestSpecification requestSpecification;
     //region FIND PET BY ID
     @Test()
     public void getPetById(){
-
-        response = requestSpecification.get(BASE_URL+GET_PET+"9223372000001097001");
-        assertNumericValueOfKey(response,"id",9223372000001097001L);
+        response = rb.createRequest()
+                .get(BASE_URL+GET_PET+"9223372000001097001");
+        assertValueOfKey(response,"id",9223372000001097001L);
         validateResponseTime(response,5000);
         printResponse(response);
 
@@ -32,8 +31,10 @@ public class PetTests extends BaseTest {
     //TODO JSON SCHEMA VALIDATOR EKLENECEK
     @Test
     public void updatePetWithFormData(){
-        requestSpecification = rb.createPostRequestWithFormData();
-        response = requestSpecification.param("name","Partial Updated").param("status","available").post(BASE_URL+UPDATE_PET+"9223372000001097001");
+        response = rb.createPostRequestWithFormData()
+                .param("name","Partial Updated")
+                .param("status","available")
+                .post(BASE_URL+UPDATE_PET+"9223372000001097001");
         assertStatusCode(response);
         validateResponseTime(response,5000);
         printResponse(response);
@@ -44,8 +45,9 @@ public class PetTests extends BaseTest {
     //TODO JSON SCHEMA VALIDATOR EKLENECEK
     @Test
     public void deletePet(){
-        requestSpecification = rb.createDeleteRequest();
-        response = requestSpecification.delete(BASE_URL+DELETE_PET+"9223372000001097001");
+
+        response = rb.createDeleteRequest()
+                .delete(BASE_URL+DELETE_PET+"9223372000001097001");
         assertStatusCode(response);
         validateResponseTime(response,5000);
         printResponse(response);
@@ -56,8 +58,10 @@ public class PetTests extends BaseTest {
     //TODO JSON SCHEMA VALIDATOR EKLENECEK
     @Test
     public void uploadPetImage(){
-        requestSpecification = rb.createPostRequestWithMultiPartFormData();
-        response = requestSpecification.multiPart("additionalMetadata","Meta Data Test Value").multiPart("file",new File("atImage.jpg")).post(BASE_URL+GET_PET+"9223372000001097001"+PET_UPLOAD_IMAGE);
+        response = rb.createPostRequestWithMultiPartFormData()
+                .multiPart("additionalMetadata","Meta Data Test Value")
+                .multiPart("file",new File("atImage.jpg"))
+                .post(BASE_URL+GET_PET+"9223372000001097001"+PET_UPLOAD_IMAGE);
         assertStatusCode(response);
         validateResponseTime(response,5000);
         printResponse(response);
@@ -67,8 +71,8 @@ public class PetTests extends BaseTest {
     //region ADD A NEW PET TO THE STORE
     @Test(dataProvider = "petProvider",dataProviderClass = DataProviders.class)
     public void addNewPet(String val){
-        requestSpecification = rb.createPostRequest(val);
-        response = requestSpecification.post(BASE_URL+PET);
+        response = rb.createPostRequest(val)
+                .post(BASE_URL+PET);
         assertValueOfKey(response,"name","Pet New Added");
         validateResponseTime(response,5000);
         printResponse(response);
@@ -78,8 +82,8 @@ public class PetTests extends BaseTest {
     //region UPDATE AN EXISTING PET
     @Test(dataProvider = "petPutProvider",dataProviderClass = DataProviders.class)
     public void updatePet(String val){
-        requestSpecification = rb.createPutRequest(val);
-        response = requestSpecification.put(BASE_URL+PET);
+        response = rb.createPutRequest(val)
+                .put(BASE_URL+PET);
         Map<String,Object> map;
         map = new HashMap<>();
         map.put("id",9223372000001097001L);
@@ -88,7 +92,6 @@ public class PetTests extends BaseTest {
         map.put("tags[0].name","Tag No 1 Updated");
         assertMultipleValueOfKey(response,map);
         validateResponseTime(response,5000);
-        //assertValueOfKey(response,"name","Pet New Added Updated");
         printResponse(response);
     }
     //endregion
@@ -96,7 +99,9 @@ public class PetTests extends BaseTest {
     //region FIND PETS BY STATUS
     @Test
     public void findPetByStatus(){
-        response = requestSpecification.queryParam("status","available").get(BASE_URL+PET_FIND_BY_STATUS);
+        response = rb.createRequest()
+                .queryParam("status","available")
+                .get(BASE_URL+PET_FIND_BY_STATUS);
         assertStatusCode(response);
         validateResponseTime(response,5000);
         printResponse(response);
