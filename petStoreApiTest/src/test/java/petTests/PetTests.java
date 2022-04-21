@@ -84,13 +84,7 @@ public class PetTests extends BaseTest {
     public void updatePet(String val){
         response = rb.createPutRequest(val)
                 .put(BASE_URL+PET);
-        Map<String,Object> map;
-        map = new HashMap<>();
-        map.put("id",9223372000001097001L);
-        map.put("name","Pet New Added Updated");
-        map.put("category.name","Dog");
-        map.put("tags[0].name","Tag No 1 Updated");
-        assertMultipleValueOfKey(response,map);
+        assertMultipleValueOfKey(response,createMapForAssertion());
         validateResponseTime(response,5000);
         printResponse(response);
     }
@@ -107,4 +101,13 @@ public class PetTests extends BaseTest {
         printResponse(response);
     }
     //endregion
+    public Map createMapForAssertion(){
+        Map<String,Object> map;
+        map = new HashMap<>();
+        map.put("id",9223372000001097001L);
+        map.put("name","Pet New Added Updated");
+        map.put("category.name","Dog");
+        map.put("tags[0].name","Tag No 1 Updated");
+        return map;
+    }
 }

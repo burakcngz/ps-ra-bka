@@ -43,7 +43,6 @@ public class UserTests extends BaseTest {
                 .queryParam("username","xatakany")
                 .queryParam("password","atakan123")
                 .get(BASE_URL + USER + USER_LOGIN);
-        //queryParam("username", getUsername()).queryParam("password",getPassword())
         //TODO assertions eklenecek
         assertStatusCode(response);
         validateResponseTime(response,5000);

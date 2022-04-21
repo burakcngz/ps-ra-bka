@@ -17,7 +17,6 @@ public class Assertions {
     }
     // TODO ASSERTIONLAR AKLA GELDIKCE BU ALANA EKLENEBILIR
 
-    //TODO Assertionlar için sadece string gibi düşünülmüş ama bunları generic type olarak kullanmak gerek hep string dönmeyebiliyor.
     public static ValidatableResponse assertStatusCode(Response res){
         return res.then().assertThat().statusCode(HttpStatus.SC_OK);
     }
