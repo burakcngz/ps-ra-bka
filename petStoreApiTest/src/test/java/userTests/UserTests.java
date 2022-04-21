@@ -1,10 +1,8 @@
 package userTests;
 
 import base.BaseTest;
-import io.restassured.specification.RequestSpecification;
 import utils.DataProviders;
 import org.testng.annotations.Test;
-
 import static endpoints.Endpoints.*;
 import static utils.Assertions.*;
 
