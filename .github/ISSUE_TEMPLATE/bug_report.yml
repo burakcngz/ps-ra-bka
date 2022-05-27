@@ -45,3 +45,15 @@ body:
        - PROD
     validations:
       required: true
+  - type: dropdown
+    id: Severity
+    attributes:
+      label: Severity of the bug?
+      description: Please select the severity for this bug.
+      multiple: false
+      options:
+       - high
+       - mid
+       - low
+    validations:
+      required: true
