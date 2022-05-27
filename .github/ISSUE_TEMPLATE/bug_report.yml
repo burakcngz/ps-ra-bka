@@ -1,13 +1,9 @@
 name: 🐛Bug Report
-description: File a bug report here
+description: File a bug here
 title: "[BUG]: "
 labels: ["bug"]
-assignees: ["AnishDe12020"]
+assignees: [""]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!!!
   - type: checkboxes
     id: new-bug
     attributes:
@@ -15,33 +11,38 @@ body:
       description: Please search to see if an issue already exists for the bug you encountered.
       options:
       - label: I have searched the existing issues
-        required: true
+        required: false
   - type: textarea
     id: bug-description
     attributes:
       label: Description of the bug
-      description: Tell us what bug you encountered and what should have happened
+      description: Please describe the bug you encountered
     validations:
       required: true
   - type: textarea
     id: steps-to-reproduce
     attributes:
       label: Steps To Reproduce
-      description: Steps to reproduce the behavior.
-      placeholder: Please write the steps in a list form
+      description: Please write down the steps for reproducing the bug.
+      placeholder: Reproduce Steps
     validations:
-      required: true
-  - type: dropdown
-    id: versions
+      required: false
+  - type: textarea
+    id: expected-behavior
     attributes:
-      label: Which version of the app are you using?
-      description: If this issue is occurring on more than 1 version of the app, select the appropriate versions.
+      label: Expected Behavior
+      description: Please write down what should be happen.
+    validations:
+      required: false
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Which environment you found the bug?
+      description: Please select the environment. If you face it on multiple environments please select all.
       multiple: true
       options:
-       - 1.0.0
-       - 1.1.0
-       - 1.2.0
-       - 2.0.0
-       - 2.1.0
+       - DEV
+       - TEST
+       - PROD
     validations:
       required: true
