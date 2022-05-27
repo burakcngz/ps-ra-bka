@@ -1,4 +1,4 @@
-name: 🐛Bug Report
+name: Bug-🐛
 description: File a bug here
 title: "[BUG]: "
 labels: ["bug"]
@@ -9,7 +9,7 @@ body:
       label: Is there an existing issue for this?
       description: Please search to see if an issue already exists for the bug you encountered.
       options:
-      - label: I have searched the existing issues
+      - label: I checked existing issues
         required: false
   - type: textarea
     id: bug-description
@@ -45,4 +45,3 @@ body:
        - PROD
     validations:
       required: true
-assignees: ["burakcngz",""]
