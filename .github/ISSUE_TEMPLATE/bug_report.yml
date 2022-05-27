@@ -57,3 +57,15 @@ body:
        - low
     validations:
       required: true
+  - type: dropdown
+    id: Priority
+    attributes:
+      label: Severity of the bug?
+      description: Please select the severity for this bug.
+      multiple: false
+      options:
+       - labels: ["documentation"]
+       - labels: ["enhancement"]
+       - labels: ["bug"]
+    validations:
+      required: true
