@@ -39,3 +39,9 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+Template Test
+| **PAGE / COMPONENT**  |  |
+|**REPRO** |  |
+| **EXPECTED BHV**  |  |
+| **ENVIRONMENT** | - [ ]DEV- [ ] LIVE  |
+|**RELATED WITH**| # |
